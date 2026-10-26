@@ -160,7 +160,7 @@
                     請回答以下題目，過關將會跳轉至電子喜帖頁面～
                 </p>
                 <button onclick="startQuiz()" class="pearl-shimmer-btn text-gold-dark font-bold text-sm tracking-widest px-8 py-3.5 rounded-xl mt-2">
-                    開始幸福答題 ✨
+                    開始答題 ✨
                 </button>
             </div>
 
@@ -183,7 +183,7 @@
                 </div>
                 
                 <!-- 答錯溫馨提示與防呆 -->
-                <p id="errorTip" class="text-xs text-rose-500 font-medium text-center h-4 opacity-0 transition-opacity duration-300">⚠️ 答錯囉！請再謹慎思考一下生存密碼 😉</p>
+                <p id="errorTip" class="text-xs text-rose-500 font-medium text-center h-4 opacity-0 transition-opacity duration-300">⚠️ 答錯囉！請再謹慎思考一下吧 😉</p>
             </div>
 
             <!-- 通關成功結果畫面 (預設隱藏) -->
@@ -211,15 +211,7 @@
     <!-- ================= 喜帖主本體 ================= -->
     <div id="mainInvitation" class="opacity-0 pointer-events-none transition-opacity duration-1000">
         
-        <!-- 頂部音樂控制按鈕 -->
-        <div class="fixed top-6 right-6 z-40">
-            <button id="musicToggleBtn" class="w-12 h-12 bg-white/90 border border-gold/40 text-gold rounded-full flex items-center justify-center shadow-md p-3 hover:bg-pearl-dark transition-all duration-300 relative group" title="播放/暫停背景音樂">
-                <svg id="musicIcon" class="w-5 h-5 fill-current transition-transform duration-300" viewBox="0 0 24 24">
-                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                </svg>
-                <div id="muteLine" class="absolute w-7 h-[2px] bg-red-400 transform rotate-45 transition-all duration-300"></div>
-            </button>
-        </div>
+
 
         <!-- 主首頁 / 封面 Section -->
         <section class="min-h-screen flex flex-col justify-between items-center relative px-4 py-16 text-center select-none">
