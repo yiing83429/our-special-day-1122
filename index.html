@@ -159,9 +159,8 @@
                     這是鳴陽 &amp; 芷萱的電子喜帖。<br>
                     請回答以下題目，過關將會跳轉至電子喜帖頁面～
                 </p>
-                <!-- 調整點：點擊此按鈕即會觸發對音軌物件的授權 -->
                 <button onclick="startQuiz()" class="pearl-shimmer-btn text-gold-dark font-bold text-sm tracking-widest px-8 py-3.5 rounded-xl mt-2">
-                    開始答題 ✨
+                    開始幸福答題 ✨
                 </button>
             </div>
 
@@ -169,12 +168,12 @@
             <div id="quizBlock" class="hidden space-y-6">
                 <!-- 進度條 -->
                 <div class="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
-                    <div id="quizProgress" class="bg-gold h-full transition-all duration-500" style="width: 33%"></div>
+                    <div id="quizProgress" class="bg-gold h-full transition-all duration-500" style="width: 50%"></div>
                 </div>
                 
                 <!-- 題目內容 -->
                 <div class="space-y-2">
-                    <span id="questionBadge" class="text-[10px] bg-gold/10 text-gold-dark font-bold px-2.5 py-1 rounded-md tracking-wider">第 1 題 / 共 3 題</span>
+                    <span id="questionBadge" class="text-[10px] bg-gold/10 text-gold-dark font-bold px-2.5 py-1 rounded-md tracking-wider">第 1 題 / 共 2 題</span>
                     <h3 id="questionTitle" class="text-base sm:text-lg font-bold text-neutral-900 pt-1 leading-snug">題目讀取中...</h3>
                 </div>
 
@@ -201,7 +200,6 @@
                     <p class="font-normal text-neutral-800">現在，正式奉上我們的婚禮邀請函，請點擊下方按鈕解鎖我們的婚紗照與詳細導航資訊！</p>
                 </div>
 
-                <!-- 調整點：最後按鈕點下，100% 強制開起音訊 -->
                 <button onclick="unlockInvitation()" class="pearl-shimmer-btn w-full text-gold-dark font-bold text-sm tracking-widest px-8 py-4 rounded-xl shadow-md">
                     解鎖婚禮邀請函 🤍
                 </button>
@@ -210,7 +208,7 @@
         </div>
     </div>
 
-    <!-- ================= 喜帖主本體 (預設隔離) ================= -->
+    <!-- ================= 喜帖主本體 ================= -->
     <div id="mainInvitation" class="opacity-0 pointer-events-none transition-opacity duration-1000">
         
         <!-- 頂部音樂控制按鈕 -->
@@ -276,7 +274,7 @@
                     <!-- 📝 替換點 1：Google 婚紗相簿連結 -->
                     <a href="https://photos.google.com" target="_blank" class="pearl-shimmer-btn inline-flex items-center justify-center space-x-3 text-gold-dark font-bold text-sm sm:text-base tracking-[0.15em] px-8 py-4 sm:px-12 sm:py-5 rounded-2xl group">
                         <span class="text-lg group-hover:scale-125 transition-transform duration-300">✨</span>
-                        <span>點擊進入 🤍 我們的 Google 婚紗相簿</span>
+                        <span>點擊進入 🤍 我們的婚紗相簿</span>
                         <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
@@ -378,7 +376,7 @@
             </div>
         </section>
 
-               <!-- 婚禮盛宴會場指引與導航地圖 (使用萬用免金鑰 iframe 嵌入) -->
+        <!-- 婚禮盛宴會場指引與導航地圖 -->
         <section class="max-w-4xl mx-auto px-6 py-12 mb-16 flex flex-col justify-center">
             <div class="glass-card rounded-3xl p-6 md:p-10 space-y-6 fade-in-up">
                 <div class="text-center space-y-1">
@@ -391,7 +389,6 @@
                         <p class="text-xs text-neutral-500 tracking-wider font-medium">📍 新松子日本料理 (台南市麻豆區)</p>
                         <a href="https://goo.gl" target="_blank" class="text-xs bg-gold/20 text-gold-dark px-4 py-1.5 rounded-full font-bold hover:bg-gold hover:text-white transition-all duration-300 tracking-wider">🎯 開啟 Google 地圖一鍵導航</a>
                     </div>
-                    <!-- 🛠️ 已替換為無需 API 金鑰的萬用嵌入式地圖語法 -->
                     <div class="rounded-2xl overflow-hidden shadow-inner border border-white/60 h-[320px]">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.6253457199144!2d120.25203307604313!3d23.183861910300645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e63715ec2aa1b%3A0xb35b7194a28cc1ad!2z5paw5p2b5a2Q5pel5pys5paZ55CG!5e0!3m2!1szh-TW!2stw!4v1714400000000!5m2!1szh-TW!2stw" 
@@ -401,12 +398,12 @@
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
-                        </footer>
+                        </iframe>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- 頁尾宣告 -->
         <footer class="text-center py-8 text-[10px] tracking-widest text-neutral-400 uppercase select-none">
             <p>© 2026 Ming &amp; Syuan Wedding. All Rights Reserved.</p>
@@ -418,7 +415,7 @@
     <script>
         // --- 核心音訊控制變數定義 ---
         // 📝 替換點：請在雙引號中填入您喜歡的背景音樂直接下載 MP3 網址！
-        const musicUrl = "https://github.com/yiing83429/our-special-day-1122/blob/main/Christina%20Perri%20A%20Thousand%20Years%20Lyrics.mp3"; 
+        const musicUrl = "https://soundhelix.com"; 
         
         const bgAudio = document.getElementById('bgAudio');
         const musicToggleBtn = document.getElementById('musicToggleBtn');
@@ -426,7 +423,6 @@
         const muteLine = document.getElementById('muteLine');
         let isPlaying = false;
 
-        // 初始化音樂網址
         if (musicUrl) { bgAudio.src = musicUrl; }
 
         // --- 互動小遊戲題庫資料集 ---
@@ -435,7 +431,7 @@
                 question: "這是一題生存送分題，請謹慎作答。請問在未來的日子裡，這個新家誰才是掌握財政與生殺大權的「絕對老大」？",
                 options: [
                     { text: "A. 一定是新娘", isCorrect: true },
-                    { text: "B. 表面是新郎，但實際是新娘", isCorrect: true }, // 生存題防呆
+                    { text: "B. 表面是新郎，但實際是新娘", isCorrect: true }, 
                     { text: "C. 應該是家裡的毛小孩吧！", isCorrect: false }
                 ]
             },
@@ -453,11 +449,9 @@
         let currentQuizIndex = 0;
 
         function startQuiz() {
-            // 💡 核心技術優化：使用者點擊「開始遊戲」時，先默默在背景啟動一次音訊(靜音/暫停狀態)
-            // 這能向 iOS Safari / Chrome 正式註冊音訊物件，徹底破解自動播放限制！
             bgAudio.play().then(() => {
                 bgAudio.pause();
-            }).catch(e => console.log("預載音訊：等待進一步互動"));
+            }).catch(e => console.log("預載音訊中"));
 
             document.getElementById('gameIntro').classList.add('hidden');
             document.getElementById('quizBlock').classList.remove('hidden');
@@ -477,17 +471,21 @@
             const optionsContainer = document.getElementById('optionsList');
             optionsContainer.innerHTML = '';
             
-            currentData.options.forEach((option) => {
+            // 🛠️ 優化點：改用 index (i) 進行唯一的點擊事件綁定，免除特殊字元編碼異常
+            currentData.options.forEach((option, i) => {
                 const btn = document.createElement('button');
                 btn.className = "game-option-btn w-full text-left p-4 rounded-xl text-xs sm:text-sm font-medium bg-white/40 text-neutral-700 shadow-sm active:scale-[0.99]";
                 btn.innerText = option.text;
-                btn.onclick = () => handleAnswerSelect(option.isCorrect);
+                btn.onclick = () => handleAnswerSelect(i);
                 optionsContainer.appendChild(btn);
             });
         }
 
-        function handleAnswerSelect(isCorrect) {
-            if (isCorrect) {
+        function handleAnswerSelect(selectedIndex) {
+            const currentData = quizData[currentQuizIndex];
+            const selectedOption = currentData.options[selectedIndex];
+
+            if (selectedOption && selectedOption.isCorrect) {
                 currentQuizIndex++;
                 if (currentQuizIndex < quizData.length) {
                     renderQuestion();
@@ -501,7 +499,6 @@
         }
 
         function unlockInvitation() {
-            // 💡 核心技術優化：在點選解鎖的瞬間，由於已有先前的點擊事件權限，立刻100%成功啟動音樂！
             if (musicUrl && !isPlaying) {
                 bgAudio.play().then(() => {
                     isPlaying = true;
@@ -524,7 +521,6 @@
             }, 700);
         }
 
-        // --- 獨立音樂控制鈕(通關後自主操作) ---
         musicToggleBtn.addEventListener('click', () => {
             if (!bgAudio.src) return;
             
@@ -543,7 +539,6 @@
                 muteLine.style.transform = 'scale(1) rotate(45deg)';
             }
         });
-
 
         // --- 核心流沙 Canvas 動態系統 ---
         const canvas = document.getElementById('quicksandCanvas');
@@ -632,6 +627,7 @@
         ];
         const bridePhotos = [
             "https://i.ibb.co/V0XB5nQM/ALN5535.jpg","https://i.ibb.co/LzcHqm01/ALN5532.jpg","https://i.ibb.co/8Dk8BS02/ALN5515.jpg"
+
         ];
 
         let groomIndex = 0;
