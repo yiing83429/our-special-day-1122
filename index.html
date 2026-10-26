@@ -378,7 +378,7 @@
             </div>
         </section>
 
-        <!-- 婚禮盛宴會場指引與導航地圖 (置底) -->
+               <!-- 婚禮盛宴會場指引與導航地圖 (使用萬用免金鑰 iframe 嵌入) -->
         <section class="max-w-4xl mx-auto px-6 py-12 mb-16 flex flex-col justify-center">
             <div class="glass-card rounded-3xl p-6 md:p-10 space-y-6 fade-in-up">
                 <div class="text-center space-y-1">
@@ -389,24 +389,24 @@
                 <div class="space-y-4">
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-2 px-1">
                         <p class="text-xs text-neutral-500 tracking-wider font-medium">📍 新松子日本料理 (台南市麻豆區)</p>
-                        <a href="https://www.google.com/maps" target="_blank" class="text-xs bg-gold/20 text-gold-dark px-4 py-1.5 rounded-full font-bold hover:bg-gold hover:text-white transition-all duration-300 tracking-wider">🎯 開啟 Google 地圖一鍵導航</a>
+                        <a href="https://goo.gl" target="_blank" class="text-xs bg-gold/20 text-gold-dark px-4 py-1.5 rounded-full font-bold hover:bg-gold hover:text-white transition-all duration-300 tracking-wider">🎯 開啟 Google 地圖一鍵導航</a>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-inner border border-white/60">
-                        <iframe
-                          width="100%"
-                          height="320"
-                          frameborder="0"
-                          style="border:0; width: 100%;"
-                          referrerpolicy="no-referrer-when-downgrade"
-                          loading="lazy"
-                          src="https://www.google.com/maps/embed/v1/search?key=__CODING_CANVAS_MAPS_EMBED_API_KEY__&q=新松子日本料理+麻豆"
-                          allowfullscreen>
-                        </iframe>
+                    <!-- 🛠️ 已替換為無需 API 金鑰的萬用嵌入式地圖語法 -->
+                    <div class="rounded-2xl overflow-hidden shadow-inner border border-white/60 h-[320px]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.6253457199144!2d120.25203307604313!3d23.183861910300645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e63715ec2aa1b%3A0xb35b7194a28cc1ad!2z5paw5p2b5a2Q5pel5pys5paZ55CG!5e0!3m2!1szh-TW!2stw!4v1714400000000!5m2!1szh-TW!2stw" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </footer>
                     </div>
                 </div>
             </div>
         </section>
-
+        
         <!-- 頁尾宣告 -->
         <footer class="text-center py-8 text-[10px] tracking-widest text-neutral-400 uppercase select-none">
             <p>© 2026 Ming &amp; Syuan Wedding. All Rights Reserved.</p>
