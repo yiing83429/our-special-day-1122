@@ -142,8 +142,8 @@
     <!-- 動態珍珠白流沙背景 Canvas -->
     <canvas id="quicksandCanvas"></canvas>
 
-    <!-- 隱藏的音訊播放元件 -->
-    <audio id="bgAudio" loop></audio>
+    <!-- 隱藏的音訊播放元件 (預先宣告預載) -->
+    <audio id="bgAudio" loop preload="auto"></audio>
 
     <!-- ================= 互動小遊戲前置視窗 ================= -->
     <div id="gameOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pearl/40 backdrop-blur-md transition-opacity duration-700">
@@ -155,13 +155,13 @@
                     <p class="tracking-[0.3em] text-[10px] uppercase text-gold-dark font-bold">Welcome Game</p>
                     <h2 class="text-xl font-bold text-neutral-900 font-serif">🤍 幸福通關小遊戲 🤍</h2>
                 </div>
-                <div class="text-sm text-neutral-600 leading-relaxed bg-white/50 p-5 rounded-xl border border-gold/10 text-left space-y-2 font-light">
-                    <p class="font-normal text-neutral-800 text-center text-base mb-1">遊戲說明</p>
-                    <p>『這是鳴陽 &amp; 芷萱的電子喜帖。</p>
-                    <p>請回答以下題目，過關將會跳轉至電子喜帖頁面～』</p>
-                </div>
+                <p class="text-sm text-neutral-600 leading-relaxed bg-white/50 p-4 rounded-xl border border-gold/10 font-light">
+                    這是鳴陽 &amp; 芷萱的電子喜帖。<br>
+                    請回答以下題目，過關將會跳轉至電子喜帖頁面～
+                </p>
+                <!-- 調整點：點擊此按鈕即會觸發對音軌物件的授權 -->
                 <button onclick="startQuiz()" class="pearl-shimmer-btn text-gold-dark font-bold text-sm tracking-widest px-8 py-3.5 rounded-xl mt-2">
-                    開始幸福答題 ✨
+                    開始答題 ✨
                 </button>
             </div>
 
@@ -169,13 +169,13 @@
             <div id="quizBlock" class="hidden space-y-6">
                 <!-- 進度條 -->
                 <div class="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
-                    <div id="quizProgress" class="bg-gold h-full transition-all duration-500" style="width: 50%"></div>
+                    <div id="quizProgress" class="bg-gold h-full transition-all duration-500" style="width: 33%"></div>
                 </div>
                 
                 <!-- 題目內容 -->
                 <div class="space-y-2">
-                    <span id="questionBadge" class="text-[10px] bg-gold/10 text-gold-dark font-bold px-2.5 py-1 rounded-md tracking-wider">第 1 題 / 共 2 題</span>
-                    <h3 id="questionTitle" class="text-base sm:text-lg font-bold text-neutral-900 pt-1 leading-snug whitespace-pre-line">題目讀取中...</h3>
+                    <span id="questionBadge" class="text-[10px] bg-gold/10 text-gold-dark font-bold px-2.5 py-1 rounded-md tracking-wider">第 1 題 / 共 3 題</span>
+                    <h3 id="questionTitle" class="text-base sm:text-lg font-bold text-neutral-900 pt-1 leading-snug">題目讀取中...</h3>
                 </div>
 
                 <!-- 選項列表 -->
@@ -183,12 +183,12 @@
                     <!-- 動態插入按鈕 -->
                 </div>
                 
-                <!-- 答錯溫馨提示 -->
+                <!-- 答錯溫馨提示與防呆 -->
                 <p id="errorTip" class="text-xs text-rose-500 font-medium text-center h-4 opacity-0 transition-opacity duration-300">⚠️ 答錯囉！請再謹慎思考一下生存密碼 😉</p>
             </div>
 
             <!-- 通關成功結果畫面 (預設隱藏) -->
-            <div id="gameSuccess" class="hidden text-center space-y-6 py-4">
+            <div id="gameSuccess" class="hidden text-center space-y-6 py-4 animate-fade-in">
                 <div class="text-4xl animate-bounce">🎉</div>
                 <div class="space-y-1">
                     <h3 class="text-xl font-bold text-neutral-900 font-serif">恭喜通關！感謝最挺我們的你 🫶</h3>
@@ -201,6 +201,7 @@
                     <p class="font-normal text-neutral-800">現在，正式奉上我們的婚禮邀請函，請點擊下方按鈕解鎖我們的婚紗照與詳細導航資訊！</p>
                 </div>
 
+                <!-- 調整點：最後按鈕點下，100% 強制開起音訊 -->
                 <button onclick="unlockInvitation()" class="pearl-shimmer-btn w-full text-gold-dark font-bold text-sm tracking-widest px-8 py-4 rounded-xl shadow-md">
                     解鎖婚禮邀請函 🤍
                 </button>
@@ -209,12 +210,12 @@
         </div>
     </div>
 
-    <!-- ================= 喜帖主本體 (通關後淡入) ================= -->
+    <!-- ================= 喜帖主本體 (預設隔離) ================= -->
     <div id="mainInvitation" class="opacity-0 pointer-events-none transition-opacity duration-1000">
         
         <!-- 頂部音樂控制按鈕 -->
         <div class="fixed top-6 right-6 z-40">
-            <button id="musicToggle" class="w-12 h-12 bg-white/90 border border-gold/40 text-gold rounded-full flex items-center justify-center shadow-md p-3 hover:bg-pearl-dark transition-all duration-300 relative group" title="播放/暫停背景音樂">
+            <button id="musicToggleBtn" class="w-12 h-12 bg-white/90 border border-gold/40 text-gold rounded-full flex items-center justify-center shadow-md p-3 hover:bg-pearl-dark transition-all duration-300 relative group" title="播放/暫停背景音樂">
                 <svg id="musicIcon" class="w-5 h-5 fill-current transition-transform duration-300" viewBox="0 0 24 24">
                     <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                 </svg>
@@ -272,7 +273,8 @@
 
                 <!-- 珠光質感按鈕 -->
                 <div class="py-4">
-                    <a href="https://drive.google.com/drive/folders/14AIutldXRSeRnHmO3UhnpnmJE9ByPT1w?usp=sharing" target="_blank" class="pearl-shimmer-btn inline-flex items-center justify-center space-x-3 text-gold-dark font-bold text-sm sm:text-base tracking-[0.15em] px-8 py-4 sm:px-12 sm:py-5 rounded-2xl group">
+                    <!-- 📝 替換點 1：Google 婚紗相簿連結 -->
+                    <a href="https://photos.google.com" target="_blank" class="pearl-shimmer-btn inline-flex items-center justify-center space-x-3 text-gold-dark font-bold text-sm sm:text-base tracking-[0.15em] px-8 py-4 sm:px-12 sm:py-5 rounded-2xl group">
                         <span class="text-lg group-hover:scale-125 transition-transform duration-300">✨</span>
                         <span>點擊進入 🤍 我們的 Google 婚紗相簿</span>
                         <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -300,7 +302,8 @@
                     <!-- 新郎童年動態卡片 -->
                     <div class="bg-white p-4 pb-6 shadow-md border border-neutral-100 rounded-sm transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500">
                         <div class="aspect-square w-full bg-neutral-50 overflow-hidden mb-3 rounded-sm relative">
-                            <img id="groomChildhoodImg" src="https://i.ibb.co/0pdp29df/IMG-20260330-002647.jpg,https://i.ibb.co/j7W3YtC/image.png,https://i.ibb.co/qMYcjgCp/1.png" alt="Groom Childhood" class="polaroid-img w-full h-full object-cover opacity-100">
+                            <!-- 📝 替換點：新郎童年預設首張照片網址 -->
+                            <img id="groomChildhoodImg" src="https://i.ibb.co/0pdp29df/IMG-20260330-002647.jpg" alt="Groom Childhood" class="polaroid-img w-full h-full object-cover opacity-100">
                         </div>
                         <p class="font-serif text-center text-gold-dark text-xs sm:text-sm tracking-widest font-bold">Little 鳴陽 👦</p>
                     </div>
@@ -308,7 +311,8 @@
                     <!-- 新娘童年動態卡片 -->
                     <div class="bg-white p-4 pb-6 shadow-md border border-neutral-100 rounded-sm transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-500">
                         <div class="aspect-square w-full bg-neutral-50 overflow-hidden mb-3 rounded-sm relative">
-                            <img id="brideChildhoodImg" src="https://i.ibb.co/V0XB5nQM/ALN5535.jpg,https://i.ibb.co/LzcHqm01/ALN5532.jpg,https://i.ibb.co/8Dk8BS02/ALN5515.jpg" alt="Bride Childhood" class="polaroid-img w-full h-full object-cover opacity-100">
+                            <!-- 📝 替換點：新娘童年預設首張照片網址 -->
+                            <img id="brideChildhoodImg" src="https://i.ibb.co/8Dk8BS02/ALN5515.jpg" alt="Bride Childhood" class="polaroid-img w-full h-full object-cover opacity-100">
                         </div>
                         <p class="font-serif text-center text-gold-dark text-xs sm:text-sm tracking-widest font-bold">Little 芷萱 👧</p>
                     </div>
@@ -329,10 +333,12 @@
                     <div class="space-y-2">
                         <p class="text-[11px] text-gold-dark tracking-[0.2em] uppercase font-bold">🤟🏻 我們的 Instagram 🤟🏻</p>
                         <div class="flex flex-wrap justify-center gap-4 pt-1">
-                            <a href="https://www.instagram.com/ming.26660/" class="flex items-center space-x-2 text-xs sm:text-sm text-neutral-700 font-bold hover:text-gold transition-colors duration-300 bg-white border border-neutral-200/80 px-5 py-2.5 rounded-xl shadow-sm hover:shadow active:scale-95">
+                            <!-- 📝 替換點 2：新郎 IG 網址 -->
+                            <a href="https://www.instagram.com/ming.26660/" target="_blank" class="flex items-center space-x-2 text-xs sm:text-sm text-neutral-700 font-bold hover:text-gold transition-colors duration-300 bg-white border border-neutral-200/80 px-5 py-2.5 rounded-xl shadow-sm hover:shadow active:scale-95">
                                 <span>🤵 鳴陽 • Instagram</span>
                             </a>
-                            <a href="https://www.instagram.com/apriloooooooo/" class="flex items-center space-x-2 text-xs sm:text-sm text-neutral-700 font-bold hover:text-gold transition-colors duration-300 bg-white border border-neutral-200/80 px-5 py-2.5 rounded-xl shadow-sm hover:shadow active:scale-95">
+                            <!-- 📝 替換點 3：新娘 IG 網址 -->
+                            <a href="https://www.instagram.com/apriloooooooo/" target="_blank" class="flex items-center space-x-2 text-xs sm:text-sm text-neutral-700 font-bold hover:text-gold transition-colors duration-300 bg-white border border-neutral-200/80 px-5 py-2.5 rounded-xl shadow-sm hover:shadow active:scale-95">
                                 <span>👰 芷萱 • Instagram</span>
                             </a>
                         </div>
@@ -351,7 +357,8 @@
                         <p class="text-xs text-neutral-500 leading-relaxed font-light">
                             期待您用鏡頭幫我們捕捉珍貴瞬間！請點選下方即時與我們和現場賓客分享快樂。
                         </p>
-                        <a href="photos.app.goo.gl/ZouCwhdmZy2ikSzg8" class="inline-block bg-neutral-800 text-pearl text-xs tracking-wider font-bold px-6 py-2.5 rounded-xl w-full shadow-sm hover:bg-gold transition-all">
+                        <!-- 📝 替換點 4：照片上傳雲端網址 -->
+                        <a href="photos.app.goo.gl/ZouCwhdmZy2ikSzg8" target="_blank" class="inline-block bg-neutral-800 text-pearl text-xs tracking-wider font-bold px-6 py-2.5 rounded-xl w-full shadow-sm hover:bg-gold transition-all">
                             Tap to view / 上傳照片
                         </a>
                     </div>
@@ -362,7 +369,8 @@
                         <p class="text-xs text-neutral-500 leading-relaxed font-light">
                             在這裡留下給我們的悄悄話、祝福，或是自拍照吧！等我們去渡蜜月時再來細細回味。
                         </p>
-                        <a href="https://padlet.com/yiing83429/padlet-s024p6or4kl9hfqoppak" class="inline-block bg-neutral-800 text-pearl text-xs tracking-wider font-bold px-6 py-2.5 rounded-xl w-full shadow-sm hover:bg-gold transition-all">
+                        <!-- 📝 替換點 5：時空膠囊祝福表單網址 -->
+                        <a href="https://padlet.com/yiing83429/padlet-s024p6or4kl9hfqoppak" target="_blank" class="inline-block bg-neutral-800 text-pearl text-xs tracking-wider font-bold px-6 py-2.5 rounded-xl w-full shadow-sm hover:bg-gold transition-all">
                             留下幸福絮語
                         </a>
                     </div>
@@ -408,18 +416,31 @@
 
     <!-- ================= 核心 JavaScript 動態腳本 ================= -->
     <script>
+        // --- 核心音訊控制變數定義 ---
+        // 📝 替換點：請在雙引號中填入您喜歡的背景音樂直接下載 MP3 網址！
+        const musicUrl = "https://github.com/yiing83429/our-special-day-1122/blob/main/Christina%20Perri%20A%20Thousand%20Years%20Lyrics.mp3"; 
+        
+        const bgAudio = document.getElementById('bgAudio');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const musicIcon = document.getElementById('musicIcon');
+        const muteLine = document.getElementById('muteLine');
+        let isPlaying = false;
+
+        // 初始化音樂網址
+        if (musicUrl) { bgAudio.src = musicUrl; }
+
         // --- 互動小遊戲題庫資料集 ---
         const quizData = [
             {
-                question: "【第 1 題：生存密碼題】\n這是一題生存送分題，請謹慎作答。請問在未來的日子裡，這個新家誰才是掌握財政與生殺大權的「絕對老大」？",
+                question: "這是一題生存送分題，請謹慎作答。請問在未來的日子裡，這個新家誰才是掌握財政與生殺大權的「絕對老大」？",
                 options: [
                     { text: "A. 一定是新娘", isCorrect: true },
-                    { text: "B. 表面是新郎，但實際是新娘", isCorrect: true }, // 🛠️ 修正重點：A與B在代碼中皆設為正確解答
+                    { text: "B. 表面是新郎，但實際是新娘", isCorrect: true }, // 生存題防呆
                     { text: "C. 應該是家裡的毛小孩吧！", isCorrect: false }
                 ]
             },
             {
-                question: "【第 2 題：婚禮守則題】\n婚禮當天的神聖任務，以下哪一個「婚禮冷知識」是絕對正確的？",
+                question: "婚禮當天的神聖任務，以下哪一個「婚禮冷知識」是絕對正確的？",
                 options: [
                     { text: "A. 當天12：10開席⏱️", isCorrect: false },
                     { text: "B. 🙅🏻不開放新娘房探房！因為有猜禮服的抽獎活動！", isCorrect: false },
@@ -432,6 +453,12 @@
         let currentQuizIndex = 0;
 
         function startQuiz() {
+            // 💡 核心技術優化：使用者點擊「開始遊戲」時，先默默在背景啟動一次音訊(靜音/暫停狀態)
+            // 這能向 iOS Safari / Chrome 正式註冊音訊物件，徹底破解自動播放限制！
+            bgAudio.play().then(() => {
+                bgAudio.pause();
+            }).catch(e => console.log("預載音訊：等待進一步互動"));
+
             document.getElementById('gameIntro').classList.add('hidden');
             document.getElementById('quizBlock').classList.remove('hidden');
             renderQuestion();
@@ -441,15 +468,12 @@
             document.getElementById('errorTip').style.opacity = '0';
             const currentData = quizData[currentQuizIndex];
             
-            // 更新狀態字樣與標題
             document.getElementById('questionBadge').innerText = `第 ${currentQuizIndex + 1} 題 / 共 2 題`;
             document.getElementById('questionTitle').innerText = currentData.question;
             
-            // 更新進度條
             const progressPercent = ((currentQuizIndex + 1) / quizData.length) * 100;
             document.getElementById('quizProgress').style.width = `${progressPercent}%`;
 
-            // 渲染選項
             const optionsContainer = document.getElementById('optionsList');
             optionsContainer.innerHTML = '';
             
@@ -468,33 +492,57 @@
                 if (currentQuizIndex < quizData.length) {
                     renderQuestion();
                 } else {
-                    // 全數過關，顯示通關感謝詞
                     document.getElementById('quizBlock').classList.add('hidden');
                     document.getElementById('gameSuccess').classList.remove('hidden');
                 }
             } else {
-                // 答錯提示
-                const errorEl = document.getElementById('errorTip');
-                errorEl.style.opacity = '1';
+                document.getElementById('errorTip').style.opacity = '1';
             }
         }
 
         function unlockInvitation() {
-            // 隱藏遊戲外層視窗
+            // 💡 核心技術優化：在點選解鎖的瞬間，由於已有先前的點擊事件權限，立刻100%成功啟動音樂！
+            if (musicUrl && !isPlaying) {
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.classList.add('music-playing');
+                    muteLine.style.opacity = '0';
+                    muteLine.style.transform = 'scale(0) rotate(45deg)';
+                }).catch(err => console.log("音樂播放受阻：", err));
+            }
+
             const overlay = document.getElementById('gameOverlay');
             overlay.style.opacity = '0';
             setTimeout(() => {
                 overlay.style.display = 'none';
                 
-                // 開啟主喜帖動態淡入
                 const mainInvite = document.getElementById('mainInvitation');
                 mainInvite.classList.remove('opacity-0', 'pointer-events-none');
                 mainInvite.classList.add('opacity-100');
                 
-                // 觸發一次動畫滾動監聽
                 triggerScrollAnimation();
             }, 700);
         }
+
+        // --- 獨立音樂控制鈕(通關後自主操作) ---
+        musicToggleBtn.addEventListener('click', () => {
+            if (!bgAudio.src) return;
+            
+            if (!isPlaying) {
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.classList.add('music-playing');
+                    muteLine.style.opacity = '0';
+                    muteLine.style.transform = 'scale(0) rotate(45deg)';
+                });
+            } else {
+                bgAudio.pause();
+                isPlaying = false;
+                musicIcon.classList.remove('music-playing');
+                muteLine.style.opacity = '1';
+                muteLine.style.transform = 'scale(1) rotate(45deg)';
+            }
+        });
 
 
         // --- 核心流沙 Canvas 動態系統 ---
@@ -580,10 +628,10 @@
 
         // --- 童年回憶雙輪播動態腳本 ---
         const groomPhotos = [
-            "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=1000&auto=format&fit=crop"
+            "https://i.ibb.co/0pdp29df/IMG-20260330-002647.jpg,https://i.ibb.co/j7W3YtC/image.png,https://i.ibb.co/qMYcjgCp/1.png"
         ];
         const bridePhotos = [
-            "https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?q=80&w=1000&auto=format&fit=crop"
+            "https://i.ibb.co/V0XB5nQM/ALN5535.jpg,https://i.ibb.co/LzcHqm01/ALN5532.jpg,https://i.ibb.co/8Dk8BS02/ALN5515.jpg"
         ];
 
         let groomIndex = 0;
@@ -624,41 +672,6 @@
 
             fadeElements.forEach(el => observer.observe(el));
         }
-
-        // --- 核心音樂控制系統 ---
-        const musicUrl = "https://github.com/yiing83429/our-special-day-1122/blob/main/Christina%20Perri%20A%20Thousand%20Years%20Lyrics.mp3"; 
-        
-        const bgAudio = document.getElementById('bgAudio');
-        const musicToggle = document.getElementById('musicToggle');
-        const musicIcon = document.getElementById('musicIcon');
-        const muteLine = document.getElementById('muteLine');
-        
-        if (musicUrl) {
-            bgAudio.src = musicUrl;
-        }
-
-        let isPlaying = false;
-        
-        musicToggle.addEventListener('click', () => {
-            if (!bgAudio.src) return;
-            
-            if (!isPlaying) {
-                bgAudio.play().then(() => {
-                    isPlaying = true;
-                    musicIcon.classList.add('music-playing');
-                    muteLine.style.opacity = '0';
-                    muteLine.style.transform = 'scale(0) rotate(45deg)';
-                }).catch((err) => {
-                    console.log("自動播放受限：", err);
-                });
-            } else {
-                bgAudio.pause();
-                isPlaying = false;
-                musicIcon.classList.remove('music-playing');
-                muteLine.style.opacity = '1';
-                muteLine.style.transform = 'scale(1) rotate(45deg)';
-            }
-        });
     </script>
 </body>
 </html>
