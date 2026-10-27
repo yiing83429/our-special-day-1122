@@ -433,7 +433,11 @@
         const muteLine = document.getElementById('muteLine');
         let isPlaying = false;
 
-        if (musicUrl) { bgAudio.src = musicUrl; }
+        if (musicUrl) { 
+            bgAudio.src = musicUrl; 
+            // 🛠️ 全新加入：音訊控制優化，設定為 30% 的優雅低音量
+            bgAudio.volume = 0.3; 
+        }
 
         // --- 互動小遊戲題庫資料集 ---
         const quizData = [
